@@ -18,7 +18,7 @@ public class GiphyLookerServiceTest {
 
     @Test
     void searchGiphyTest() {
-        String giphyLookerServiceResult = (String) giphyLookerService.searchGiphy(TAG);
+        String giphyLookerServiceResult = giphyLookerService.searchGiphy(TAG);
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(giphyLookerServiceResult);
         Assertions.assertTrue(matcher.matches());

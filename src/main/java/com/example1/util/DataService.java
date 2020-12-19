@@ -1,9 +1,12 @@
-package com.example1.service;
+package com.example1.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class DataService {
+public final class DataService {
+    private DataService() {
+    }
+
     private final static String DATEFORMATE = "yyyy-MM-dd";
 
     public static String today () {

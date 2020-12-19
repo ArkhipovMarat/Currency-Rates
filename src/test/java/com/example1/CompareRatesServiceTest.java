@@ -12,7 +12,7 @@ class CompareRatesServiceTest {
 	CompareRatesService compareRatesService;
 
 	private final static String CURRENCY = "RUB";
-	private final static int RESULT = -1;
+	private final static int RESULT = 0; // may put 1/0/-1 accordingly to daily currency rates changes
 
 	@Test
 	void compareRatesTest() {
