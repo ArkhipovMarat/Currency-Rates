@@ -4,7 +4,6 @@ import com.example1.feignclient.GiphyServiceClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,23 +18,28 @@ public class GiphyLookerService {
     @Value("${giphy.json_node:data}")
     private String jsonNod;
 
-    @Autowired
-    private GiphyServiceClient gsClient;
+    private final GiphyServiceClient gsClient;
 
     private final ObjectMapper objectMapper;
 
-    public GiphyLookerService(ObjectMapper objectMapper) {
+    public GiphyLookerService(ObjectMapper objectMapper, GiphyServiceClient gsClient) {
         this.objectMapper = objectMapper;
+        this.gsClient = gsClient;
     }
 
     public String searchGiphy(String tag) {
-        JsonNode jsonNode = null;
+        JsonNode jsonNode;
+        String giphyUrl;
         try {
-            String json = gsClient.getGiphyJson(apiKey, tag);
-            jsonNode = objectMapper.readTree(json);
+            String giphyJson = gsClient.getGiphyJson(apiKey, tag);
+            jsonNode = objectMapper.readTree(giphyJson);
+            giphyUrl = jsonNode.get(jsonNod).get(jsonKey).asText();
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Can't get response from giphy client! Please check request is valid");
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Can't get giphy! Please check properties " +
+                    "'jsonNod', 'jsonKey', 'api_key' are valid");
         }
-        return jsonNode.get(jsonNod).get(jsonKey).asText();
+        return giphyUrl;
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name="currency-exchange", url = "${openexchangerates.api_url}")
 public interface CurrencyExchangeServiceClient {
-    @GetMapping("/{date}.json?app_id={appId}")
-    String getHistoricalCurrencyJson(@PathVariable("date") String date, @RequestParam("appId") String appId);
+    String API_PATH = "/{date}.json";
+
+    @GetMapping(API_PATH)
+    String getHistoricalCurrencyJson(@PathVariable("date") String date, @RequestParam("app_id") String appId);
 }

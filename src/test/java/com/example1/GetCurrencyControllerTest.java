@@ -1,6 +1,6 @@
 package com.example1;
 
-import com.example1.controller.ApplicationController;
+import com.example1.controller.GetCurrencyController;
 import com.example1.service.CompareRatesService;
 import com.example1.service.GiphyLookerService;
 import org.junit.jupiter.api.Assertions;
@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Objects;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ApplicationController.class)
-public class ControllerTest {
+@WebMvcTest(GetCurrencyController.class)
+public class GetCurrencyControllerTest {
     @MockBean
     CompareRatesService compareRatesServiceMock;
 

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name="gyphy-service", url = "${giphy.api_url}")
 public interface GiphyServiceClient {
-    @GetMapping("?api_key={apiKey}&tag={tag}")
-    String getGiphyJson(@RequestParam("apiKey") String apiKey, @RequestParam("tag") String tag);
+    String API_PATH = "";
+
+    @GetMapping(API_PATH)
+    String getGiphyJson(@RequestParam("api_key") String apiKey, @RequestParam("tag") String tag);
 }
