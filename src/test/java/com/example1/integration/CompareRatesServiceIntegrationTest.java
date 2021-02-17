@@ -1,4 +1,4 @@
-package com.example1;
+package com.example1.integration;
 
 import com.example1.service.CompareRatesService;
 import org.junit.jupiter.api.Assertions;
@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CompareRatesServiceTest {
+class CompareRatesServiceIntegrationTest {
 	@Autowired
-	CompareRatesService compareRatesService;
+	CompareRatesService  compareRatesService;
 
 	private final static String CURRENCY = "RUB";
-	private final static int RESULT = 0; // may put 1/0/-1 accordingly to daily currency rates changes
+	private final static int RESULT = 1; // may put 1/0/-1 accordingly to daily currency rates changes
 
 	@Test
-	void compareRatesTest() {
+	void compareRatesMethodTest() {
 		int compareRatesServiceResult = compareRatesService.compareRates(CURRENCY);
 		Assertions.assertEquals(RESULT,compareRatesServiceResult);
 	}

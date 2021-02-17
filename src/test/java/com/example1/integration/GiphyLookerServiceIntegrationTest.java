@@ -1,4 +1,4 @@
-package com.example1;
+package com.example1.integration;
 
 import com.example1.service.GiphyLookerService;
 import org.junit.jupiter.api.Assertions;
@@ -9,15 +9,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SpringBootTest
-public class GiphyLookerServiceTest {
+public class GiphyLookerServiceIntegrationTest {
     @Autowired
     GiphyLookerService giphyLookerService;
 
-    private static final String TAG = "rich";
+    private static final String TAG = "ANYTHING";
     public static final String REGEX = "https://" + "media" + "(\\w*)" + ".giphy.com/media/" + "(\\w*)" + "/giphy.gif";
 
     @Test
-    void searchGiphyTest() {
+    void searchGiphyMethodTest() {
         String giphyLookerServiceResult = giphyLookerService.searchGiphy(TAG);
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(giphyLookerServiceResult);

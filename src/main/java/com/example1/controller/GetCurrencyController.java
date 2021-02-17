@@ -1,8 +1,6 @@
 package com.example1.controller;
 
-import com.example1.service.CompareRatesService;
-import com.example1.service.GiphyLookerService;
-import org.springframework.beans.factory.annotation.Value;
+import com.example1.service.GetCurrencyGiphyService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,62 +9,29 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GetCurrencyController {
-    private final String VIEW_NAME = "index";
-    private final String ERROR_VIEW = "trouble";
     private final String API_PATH = "/rates/{currency}";
     private final String PATH_VAR_CURRENCY = "currency";
+
+    private final String VIEW_NAME_INDEX = "index";
     private final String MODEL_NAME_GIF = "gif";
+
+    private final String VIEW_NAME_ERROR = "trouble";
     private final String MODEL_NAME_ERROR = "errorMsg";
 
-    private final CompareRatesService compareRatesService;
-    private final GiphyLookerService giphyLookerService;
+    private final GetCurrencyGiphyService getCurrencyGiphyService;
 
-    @Value("${giphy.tag.positive}")
-    private String TAG_POSITIVE;
-
-    @Value("${giphy.tag.negative}")
-    private String TAG_NEGATIVE;
-
-    @Value("${giphy.tag.neutral}")
-    private String TAG_NEUTRAL;
-
-    public GetCurrencyController(CompareRatesService compareRatesService, GiphyLookerService giphyLookerService) {
-        this.compareRatesService = compareRatesService;
-        this.giphyLookerService = giphyLookerService;
+    public GetCurrencyController(GetCurrencyGiphyService getCurrencyGiphyService) {
+        this.getCurrencyGiphyService = getCurrencyGiphyService;
     }
-
 
     @GetMapping(API_PATH)
     public ModelAndView getCurrencyGiphy(@PathVariable(PATH_VAR_CURRENCY) String currency) {
-        int compareRatesResult = compareRates(currency);
-        String giphyUrl = getGiphy(compareRatesResult);
-        return new ModelAndView(VIEW_NAME, MODEL_NAME_GIF, giphyUrl);
-    }
-
-    @GetMapping("")
-    public ModelAndView handleBadRequest() {
-        String message = "Bad request! Please type correct API request";
-        return new ModelAndView(ERROR_VIEW, MODEL_NAME_ERROR, message);
-    }
-
-    private int compareRates(String currency) {
-        return compareRatesService.compareRates(currency);
-    }
-
-    private String getGiphy(int compareRatesResult) {
-        String giphyUrl = "";
-        if (compareRatesResult == 1) {
-            giphyUrl = giphyLookerService.searchGiphy(TAG_POSITIVE);
-        } else if (compareRatesResult == -1) {
-            giphyUrl = giphyLookerService.searchGiphy(TAG_NEGATIVE);
-        } else if (compareRatesResult == 0) {
-            giphyUrl = giphyLookerService.searchGiphy(TAG_NEUTRAL);
-        }
-        return giphyUrl;
+        String giphyUrl = getCurrencyGiphyService.getCurrencyGiphy(currency);
+        return new ModelAndView(VIEW_NAME_INDEX, MODEL_NAME_GIF, giphyUrl);
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ModelAndView handleRTE(RuntimeException e) {
-        return new ModelAndView(ERROR_VIEW, MODEL_NAME_ERROR, e.getMessage());
+        return new ModelAndView(VIEW_NAME_ERROR, MODEL_NAME_ERROR, e.getMessage());
     }
 }
