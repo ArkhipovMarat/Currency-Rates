@@ -1,6 +1,6 @@
 package com.example1.unit;
 
-import com.example1.dto.GiphyData;
+import com.example1.dto.giphydata.GiphyDataDto;
 import com.example1.feignclient.GiphyServiceClient;
 import com.example1.service.GiphyLookerService;
 import org.junit.jupiter.api.Assertions;
@@ -11,27 +11,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 @SpringBootTest
-public class GiphyLookerServiceUnitTest {
+public class GiphyLookerServiceTest {
     @MockBean(name = "gsClient")
     GiphyServiceClient gsClient;
 
     @Autowired
-    GiphyLookerService giphyLookerService;
+    GiphyLookerService sut;
 
     private static final String API_KEY = "7wnTCxzX13dNHjzrZwtktjGAC5okJMbG";
     private static final String TAG = "ANYTHING";
     public static final String GIPHY_URL = "test giphy url";
 
     @Test
-    public void searchGiphySuccess() {
-        GiphyData giphyData = new GiphyData();
-        giphyData.setData(giphyData.new Data(GIPHY_URL));
+    public void searchGiphyShouldPassSuccess() {
+        // given
+        GiphyDataDto giphyDataDto = new GiphyDataDto();
+        giphyDataDto.setData(giphyDataDto.new Data(GIPHY_URL));
 
-        Mockito.when(gsClient.getGiphyJson(API_KEY,TAG)).thenReturn(giphyData);
+        Mockito.when(gsClient.getGiphyJson(API_KEY,TAG)).thenReturn(giphyDataDto);
 
-        String giphyDataExpected = GIPHY_URL;
-        String giphyDataResult = giphyLookerService.searchGiphy(TAG);
+        String giphyDataResult = sut.searchGiphy(TAG);
 
-        Assertions.assertEquals(giphyDataExpected,giphyDataResult);
+        Assertions.assertEquals(GIPHY_URL,giphyDataResult);
     }
 }

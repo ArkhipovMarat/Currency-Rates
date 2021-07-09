@@ -1,6 +1,6 @@
 package com.example1.unit;
 
-import com.example1.dto.DevelopersGiphyProperties;
+import com.example1.dto.properties.DevelopersGiphyProperties;
 import com.example1.service.CompareRatesService;
 import com.example1.service.GetCurrencyGiphyService;
 import com.example1.service.GiphyLookerService;
@@ -13,9 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class GetCurrencyGiphyServiceUnitTest {
+public class GetCurrencyGiphyServiceTest {
     @Autowired
-    GetCurrencyGiphyService getCurrencyGiphyService;
+    GetCurrencyGiphyService sut;
 
     @Autowired
     DevelopersGiphyProperties developersGiphyProperties;
@@ -39,7 +39,7 @@ public class GetCurrencyGiphyServiceUnitTest {
         when(compareRatesService.compareRates(CURRENCY)).thenReturn(COMPARE_RATES_RESULT_POSITIVE);
         when(giphyLookerService.searchGiphy(giphyTagPositive)).thenReturn(GIPHY_URL_EXPECTED);
 
-        String giphyUrlResult = getCurrencyGiphyService.getCurrencyGiphy(CURRENCY);
+        String giphyUrlResult = sut.getCurrencyGiphy(CURRENCY);
 
         Assertions.assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
     }
@@ -51,7 +51,7 @@ public class GetCurrencyGiphyServiceUnitTest {
         when(compareRatesService.compareRates(CURRENCY)).thenReturn(COMPARE_RATES_RESULT_NEGATIVE);
         when(giphyLookerService.searchGiphy(giphyTagNegative)).thenReturn(GIPHY_URL_EXPECTED);
 
-        String giphyUrlResult = getCurrencyGiphyService.getCurrencyGiphy(CURRENCY);
+        String giphyUrlResult = sut.getCurrencyGiphy(CURRENCY);
 
         Assertions.assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
     }
@@ -63,7 +63,7 @@ public class GetCurrencyGiphyServiceUnitTest {
         when(compareRatesService.compareRates(CURRENCY)).thenReturn(COMPARE_RATES_RESULT_ZERO);
         when(giphyLookerService.searchGiphy(giphyTagNeutral)).thenReturn(GIPHY_URL_EXPECTED);
 
-        String giphyUrlResult = getCurrencyGiphyService.getCurrencyGiphy(CURRENCY);
+        String giphyUrlResult = sut.getCurrencyGiphy(CURRENCY);
 
         Assertions.assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
     }

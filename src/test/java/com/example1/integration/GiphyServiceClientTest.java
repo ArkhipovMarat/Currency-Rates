@@ -1,26 +1,32 @@
 package com.example1.integration;
 
-import com.example1.service.GiphyLookerService;
+import com.example1.dto.giphydata.GiphyDataDto;
+import com.example1.feignclient.GiphyServiceClient;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @SpringBootTest
-public class GiphyLookerServiceIntegrationTest {
+public class GiphyServiceClientTest {
     @Autowired
-    GiphyLookerService giphyLookerService;
+    GiphyServiceClient sut;
 
+    private static final String API_KEY = "7wnTCxzX13dNHjzrZwtktjGAC5okJMbG";
     private static final String TAG = "ANYTHING";
     public static final String REGEX = "https://" + "media" + "(\\w*)" + ".giphy.com/media/" + "(\\w*)" + "/giphy.gif";
 
     @Test
-    void searchGiphyMethodTest() {
-        String giphyLookerServiceResult = giphyLookerService.searchGiphy(TAG);
+    void getGiphyJson() {
+        GiphyDataDto giphyDataDto = sut.getGiphyJson(API_KEY, TAG);
+        String giphyUrl = giphyDataDto.getData().getImage_original_url();
+
         Pattern pattern = Pattern.compile(REGEX);
-        Matcher matcher = pattern.matcher(giphyLookerServiceResult);
+        Matcher matcher = pattern.matcher(giphyUrl);
+
         Assertions.assertTrue(matcher.matches());
     }
 }

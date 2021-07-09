@@ -15,13 +15,13 @@ public class ControllerIntegrationTest {
     @Autowired
     MockMvc mockMvc;
 
-    private static final String VALID_REQUEST = "/rates/RUB";
+    private static final String VALID_REQUEST = "/rates/USD";
     private static final String INDEX_VIEW_NAME = "index";
     private static final String MODEL_ATTRIBUTE = "gif";
     private static final String REGEX = "https://" + "media" + "(\\w*)" + ".giphy.com/media/" + "(\\w*)" + "/giphy.gif";
 
     private static final String BAD_REQUEST = "/";
-    private final String MESSAGE_BAD_REQUEST = "Bad request! Please type valid request. Example: rates/RUB";
+    private final String MESSAGE_BAD_REQUEST = "Bad request! Please type valid request. Example: rates/USD";
 
     @Test
     void getCurrencyGiphyWhenValidRequest() throws Exception {

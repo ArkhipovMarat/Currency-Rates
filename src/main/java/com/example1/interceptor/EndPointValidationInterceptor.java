@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 public class EndPointValidationInterceptor implements HandlerInterceptor {
     private static final String REGEX = "/rates/" + "[A-Z]{3}";
-    private final String MESSAGE_BAD_REQUEST = "Bad request! Please type valid request. Example: rates/RUB";
+    private final String MESSAGE_BAD_REQUEST = "Bad request! Please type valid request. Example: rates/EUR";
     private final int STATUS_BAD_REQUEST = 400;
 
     @Override

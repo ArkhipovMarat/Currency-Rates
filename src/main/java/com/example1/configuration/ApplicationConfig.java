@@ -1,7 +1,7 @@
 package com.example1.configuration;
 
-import com.example1.dto.DevelopersGiphyProperties;
-import com.example1.dto.OpenExchangeRatesProperties;
+import com.example1.dto.properties.DevelopersGiphyProperties;
+import com.example1.dto.properties.OpenExchangeRatesProperties;
 import com.example1.interceptor.EndPointValidationInterceptor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;

@@ -7,16 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CompareRatesServiceIntegrationTest {
+class CompareRatesServiceTest {
 	@Autowired
-	CompareRatesService  compareRatesService;
+	CompareRatesService sut;
 
-	private final static String CURRENCY = "RUB";
-	private final static int RESULT = 1; // may put 1/0/-1 accordingly to daily currency rates changes
+	private final static String CURRENCY = "USD";
+	private final static int RESULT = -1; // may put 1/0/-1 accordingly to daily currency rates changes
 
 	@Test
 	void compareRatesMethodTest() {
-		int compareRatesServiceResult = compareRatesService.compareRates(CURRENCY);
+		int compareRatesServiceResult = sut.compareRates(CURRENCY);
 		Assertions.assertEquals(RESULT,compareRatesServiceResult);
 	}
 }

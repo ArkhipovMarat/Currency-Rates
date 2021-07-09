@@ -1,4 +1,4 @@
-package com.example1.dto;
+package com.example1.dto.giphydata;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GiphyData {
+public class GiphyDataDto {
     private Data data;
 
     @lombok.Data

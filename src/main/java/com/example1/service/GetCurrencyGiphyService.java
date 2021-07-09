@@ -1,6 +1,6 @@
 package com.example1.service;
 
-import com.example1.dto.DevelopersGiphyProperties;
+import com.example1.dto.properties.DevelopersGiphyProperties;
 import org.springframework.stereotype.Service;
 
 @Service
