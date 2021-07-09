@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GiphyLookerService {
     private static final String MESSAGE_ERROR_GET_GIPHY =
-            "Can't get giphy! Please check properties 'app_id', 'giphy_tag' are valid";
+            "Can't get giphy! Please check properties 'app_id', 'giphy_tag' are valid! See also ";
 
     private final DevelopersGiphyProperties developersGiphyProperties;
     private final GiphyServiceClient gsClient;
@@ -24,7 +24,7 @@ public class GiphyLookerService {
         try {
             giphyUrl = gsClient.getGiphyJson(API_KEY, giphyTag).getData().getImage_original_url();
         } catch (Exception e) {
-            throw new RuntimeException(MESSAGE_ERROR_GET_GIPHY);
+            throw new RuntimeException(MESSAGE_ERROR_GET_GIPHY + e.getMessage());
         }
         return giphyUrl;
     }

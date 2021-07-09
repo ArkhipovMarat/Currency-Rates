@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompareRatesService {
     private static final String MESSAGE_ERROR_GET_CURRENCY =
-            "Can't get currency! Please check property 'app_id' is valid";
+            "Can't get currency! Please check property 'app_id' is valid! See also ";
 
     private final OpenExchangeRatesProperties openExchangeRatesProperties;
     private final CurrencyExchangeServiceClient cesClient;
@@ -34,7 +34,7 @@ public class CompareRatesService {
         try {
             currencyRate = cesClient.getHistoricalCurrencyJson(date, APP_ID, BASE).getRates().get(currency);
         } catch (Exception e) {
-            throw new RuntimeException(MESSAGE_ERROR_GET_CURRENCY);
+            throw new RuntimeException(MESSAGE_ERROR_GET_CURRENCY + e.getMessage());
         }
         return currencyRate;
     }
