@@ -30,8 +30,8 @@ public class GetCurrencyController {
         return new ModelAndView(VIEW_NAME_INDEX, MODEL_NAME_GIF, giphyUrl);
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    public ModelAndView handleRTE(RuntimeException e) {
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleException(Exception e) {
         return new ModelAndView(VIEW_NAME_ERROR, MODEL_NAME_ERROR, e.getMessage());
     }
 }
