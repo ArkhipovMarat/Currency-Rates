@@ -29,6 +29,8 @@ You can manually configure some application-properties.
 | giphy.tag.neutral | tag used when exchange rates are equals for today and yesterday|
 
 ### Для запуска приложения в Docker
+Собрать проект с помощью gradle build.
+
 В корневой папке приложения выполнить команды:
 1. docker build -t currency .
 2. docker run -p 8080:8080 currency
