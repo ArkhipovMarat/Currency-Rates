@@ -3,12 +3,13 @@ package com.example1.unit;
 import com.example1.dto.giphydata.GiphyDataDto;
 import com.example1.feignclient.GiphyServiceClient;
 import com.example1.service.GiphyLookerService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class GiphyLookerServiceTest {
@@ -32,6 +33,6 @@ public class GiphyLookerServiceTest {
 
         String giphyDataResult = sut.searchGiphy(TAG);
 
-        Assertions.assertEquals(GIPHY_URL,giphyDataResult);
+        assertEquals(GIPHY_URL,giphyDataResult);
     }
 }

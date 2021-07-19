@@ -2,13 +2,14 @@ package com.example1.integration;
 
 import com.example1.dto.giphydata.GiphyDataDto;
 import com.example1.feignclient.GiphyServiceClient;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class GiphyServiceClientTest {
@@ -27,6 +28,6 @@ public class GiphyServiceClientTest {
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(giphyUrl);
 
-        Assertions.assertTrue(matcher.matches());
+        assertTrue(matcher.matches());
     }
 }

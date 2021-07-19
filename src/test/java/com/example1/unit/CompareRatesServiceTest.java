@@ -4,7 +4,6 @@ import com.example1.dto.currencyrates.CurrencyRatesDto;
 import com.example1.feignclient.CurrencyExchangeServiceClient;
 import com.example1.service.CompareRatesService;
 import com.example1.util.DataUtil;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class CompareRatesServiceTest {
@@ -45,7 +46,7 @@ public class CompareRatesServiceTest {
 
         int compareRatesResult = sut.compareRates(CURRENCY);
 
-        Assertions.assertEquals(compareRatesExpected, compareRatesResult);
+        assertEquals(compareRatesExpected, compareRatesResult);
     }
 
 
@@ -62,7 +63,7 @@ public class CompareRatesServiceTest {
 
         int compareRatesResult = sut.compareRates(CURRENCY);
 
-        Assertions.assertEquals(compareRatesExpected, compareRatesResult);
+        assertEquals(compareRatesExpected, compareRatesResult);
     }
 
     @Test
@@ -78,7 +79,7 @@ public class CompareRatesServiceTest {
 
         int compareRatesResult = sut.compareRates(CURRENCY);
 
-        Assertions.assertEquals(compareRatesExpected, compareRatesResult);
+        assertEquals(compareRatesExpected, compareRatesResult);
     }
 
     private static CurrencyRatesDto getCurrencyRatesDto(double currencyValue) {

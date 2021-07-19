@@ -1,12 +1,13 @@
 package com.example1.integration;
 
 import com.example1.service.GiphyLookerService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class GiphyLookerServiceTest {
@@ -21,6 +22,6 @@ public class GiphyLookerServiceTest {
         String giphyLookerServiceResult = sut.searchGiphy(TAG);
         Pattern pattern = Pattern.compile(REGEX);
         Matcher matcher = pattern.matcher(giphyLookerServiceResult);
-        Assertions.assertTrue(matcher.matches());
+        assertTrue(matcher.matches());
     }
 }

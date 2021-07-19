@@ -4,12 +4,12 @@ import com.example1.dto.properties.DevelopersGiphyProperties;
 import com.example1.service.CompareRatesService;
 import com.example1.service.GetCurrencyGiphyService;
 import com.example1.service.GiphyLookerService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -41,7 +41,7 @@ public class GetCurrencyGiphyServiceTest {
 
         String giphyUrlResult = sut.getCurrencyGiphy(CURRENCY);
 
-        Assertions.assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
+        assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class GetCurrencyGiphyServiceTest {
 
         String giphyUrlResult = sut.getCurrencyGiphy(CURRENCY);
 
-        Assertions.assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
+        assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
     }
 
     @Test
@@ -65,6 +65,6 @@ public class GetCurrencyGiphyServiceTest {
 
         String giphyUrlResult = sut.getCurrencyGiphy(CURRENCY);
 
-        Assertions.assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
+        assertEquals(GIPHY_URL_EXPECTED, giphyUrlResult);
     }
 }

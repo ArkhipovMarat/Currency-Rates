@@ -2,10 +2,11 @@ package com.example1.integration;
 
 import com.example1.feignclient.CurrencyExchangeServiceClient;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class CurrencyExchangeServiceClientTest {
@@ -22,6 +23,6 @@ public class CurrencyExchangeServiceClientTest {
     public void getHistoricalCurrencyJson() {
         double resultCurrencyValue = sut.getHistoricalCurrencyJson(DATE, API_KEY, BASE)
                 .getRates().get(CURRENCY);
-        Assertions.assertEquals(EXPECTED_CURRENCY_VALUE, resultCurrencyValue);
+        assertEquals(EXPECTED_CURRENCY_VALUE, resultCurrencyValue);
     }
 }

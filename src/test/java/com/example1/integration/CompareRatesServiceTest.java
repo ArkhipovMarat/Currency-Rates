@@ -1,10 +1,13 @@
 package com.example1.integration;
 
 import com.example1.service.CompareRatesService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class CompareRatesServiceTest {
@@ -12,11 +15,11 @@ class CompareRatesServiceTest {
 	CompareRatesService sut;
 
 	private final static String CURRENCY = "USD";
-	private final static int RESULT = 0; // may put 1/0/-1 accordingly to daily currency rates changes
+	private final static Set<Integer> EXPECTED = Set.of(-1,0,1); // result may be -1/0/1 accordingly to daily currency rates changes
 
 	@Test
 	void compareRatesMethodTest() {
 		int compareRatesServiceResult = sut.compareRates(CURRENCY);
-		Assertions.assertEquals(RESULT,compareRatesServiceResult);
+		assertTrue(EXPECTED.contains(compareRatesServiceResult));
 	}
 }
